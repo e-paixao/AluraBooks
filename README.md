@@ -1,2 +1,2 @@
 # AluraBooks
- Projeto - curso Alura de reponsividade HTML-CSS_mobile-first
+ Projeto - curso Alura de responsividade HTML-CSS_mobile-first
