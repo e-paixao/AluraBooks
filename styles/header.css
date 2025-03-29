@@ -1,0 +1,173 @@
+span.cabecalho__menu-hamburger {
+    width: 24px;
+    height: 24px;
+    background-image: url("../imagens/Menu.svg");/*com os 2 pontos ".." o arquivo foi buscado na pasta anterior*/
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;/* o valor "inline-block" permite utilizar os parâmetros largura (width) e altura (height) */
+}
+
+/* mudando o ícone ao acioná-lo */
+input.container__botao:checked~.container__rotulo>.cabecalho__menu-hamburger {
+    background-image: url("../imagens/Menu_Aberto.svg");
+}
+
+input.container__botao:checked~.container__rotulo {
+    background: var(--azul-degrade);
+}
+
+header.cabecalho {
+    background-color: var(--branco);
+    display: flex;/*transforma o cabeçalho num flex-container e as tag-filhos passaram a ser flex-items, com isso podemos atribuir alguns parâmetros específicos*/
+    justify-content: space-between;/*separa os elementos com mesmo espaço entre eles*/
+    align-items: center;
+    position: relative;/*position: relative nos permite inserir outros atributos como top, left, right e bottom, que são, respectivamente, topo, esquerda, direita e baixo.*/
+}
+
+div.container {
+    display: flex;
+    align-items: center;
+}
+
+img.container__imagem {
+    padding: 1em;
+}
+
+ul.lista-menu {
+    display: none;
+    position: absolute;/*position: absolute permite movimentar o elemento de acordo com outro que veio antes ou que é o "pai", e que esteja em uma position diferente de "estática", que é a padrão.*/
+    top: 100%;
+    width: 60vw;
+    /* Para deixar o menu para baixo do seu ícone vamos utilizar uma propriedade chamada top e o valor 100%, ou seja, o topo deste elemento deve estar 100% depois do cabeçalho. Já a propriedade de largura width deve conter a sua unidade de medida como vw que significa view width, ou seja, a largura da tela. Sendo assim, 60vw significa 60% da tela que está acessando a página. */
+}
+
+/* ":checked" => pseudo-classe - detecta se está preenchido o input type="checkbox".
+" ~ " => é um combinador css, cria uma condição. vai procurar outro elemento que vem em seguida e que tem a classe que foi inserida depois. Esse é o caso mais próximo de uma condicional com CSS. */
+input.container__botao:checked~.lista-menu {
+    display: block;
+}
+
+li.lista-menu__titulo, li.lista-menu__item {
+    padding: 1em;
+    background-color: var(--branco);
+}
+li.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+a.lista-menu__link {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+/*colocamos um background inteiro de azul degradê, mas não aplica na fonte. Então, o "background-clip: text" vai fixar a cor de background só onde tem texto. Então, fica aplicado. E os webkitsfuncionam em outros tipos de navegadores. */
+text-transform: uppercase;
+}
+/*para não aparecer no qdo menor q 1024*/
+input.container__botao {
+    display: none;
+}
+
+.container__titulo {
+    display: none;
+}
+
+.opcoes {
+    display: none;
+}
+/*para o media queries*/
+.container__texto {
+    display: none;
+}
+
+
+
+/*Trabalhando com responsividade, podemos utilizar media queries que nos ajudarão muito nisso.*/
+@media screen and (min-width: 1024px) {
+    .container__titulo, .container__titulo--negrito {
+        font-family: var(--fonte-secundaria);
+        font-size: 30px;
+    }
+
+    .container__titulo {
+        font-weight: 400;
+        display: block;
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opcoes {
+        display: flex;
+    }
+
+    .opcoes__item {
+        padding: 0 1em;
+        text-transform: uppercase;
+    }
+
+    .opcoes__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__imagem-transparente {
+        display: none;
+    }
+
+    span.cabecalho__menu-hamburger {
+        display: none;
+    }
+
+    .opcoes__botao:checked~.lista-menu {
+        display: block;
+        width: auto;
+    }
+
+    .opcoes__botao {
+        display: none;
+    }
+
+    .opcoes__botao:checked~.opcoes__rotulo>.opcoes__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .opcoes__item {
+        padding: 2em 1em;
+    }
+
+    .lista-menu__item:hover {
+        background: var(--azul-degrade);
+    }
+
+    .lista-menu__item:hover>.lista-menu__link {
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+    
+}
+
+@media screen and (min-width: 1728px) {
+    .container__link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+    
+    .cabecalho {
+        padding: 0 2em;
+    }
+
+    .opcoes {
+        margin-right: auto;/*preenche o espaço da direita e alinha o conteúdo na esquerda*/
+    }
+
+    /*para apacerecer no media queries 17428px-desktop */
+    .container__texto {
+        display: block;
+    }
+}
